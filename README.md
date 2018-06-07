@@ -1,10 +1,10 @@
-# Countory
-This sample app with showing the way how to implement infinite scroll in Android RecyclerView
+# Country with flag
+This sample app with showing the way how to implement country list dailog
 
-#  Android-RecyclerView-Infinitescroll
+#  Android-Country with flag
 
 ## Getting Started
-This sample app with showing the way how to implement infinite scroll in Android RecyclerView
+This sample app with showing the way how to implement with country list dailog
 
 ## Installing
 
@@ -24,101 +24,54 @@ Step 2
 
 ```
 dependencies {
-	         compile 'com.github.tuonbondol:Android-RecyclerView-Infinitescroll:1.0.5'
+	         implementation 'com.teangsunry.countrylibrary:1.0'
 	}
 ```
 
 ## Sample Using
 
 ```
-class HomeRecyclerViewAdapter(val mContext: Context, mRecyclerView: RecyclerView, val mLayoutManager: LinearLayoutManager,
-                              mRecyclerViewAdapterCallback: InfiniteScrollRecyclerView.RecyclerViewAdapterCallback, var mDataList: ArrayList<Foods>?, val mItemClickCallback: HomeItemClick?)
-    : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
 
-    val holderLoading: Int = 0
-    val holderRow: Int = 1
-    var mInfiniteScrollRecyclerView: InfiniteScrollRecyclerView? = null
+class MainActivity : AppCompatActivity(), OnCountryPickerListener {
 
-    init {
-        mInfiniteScrollRecyclerView = InfiniteScrollRecyclerView(mContext, mRecyclerView, mLayoutManager, mRecyclerViewAdapterCallback)
-    }
+    private var countryPicker: CountryPicker? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        if (viewType == holderRow) {
-            return ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.my_lesson_row_layout, parent, false))
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        countryPicker = CountryPicker.Builder().with(this)
+                .listener(this)
+                .build()
+        select_country_pick.setOnClickListener {
+            countryPicker?.showDialog(supportFragmentManager)
         }
-        return ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.infinite_loading_progress_bar_layout, parent, false))
+        onSelectCountry(countryPicker?.getDefualtCountry(this))
+
     }
 
-    override fun getItemCount(): Int = mDataList!!.size
 
-    override fun getItemViewType(position: Int): Int {
-        when (mDataList!![position].loadingStatus) {
-            false -> return holderRow
-            else -> {
-                return holderLoading
-            }
-        }
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        if (holder?.itemViewType == holderRow) {
-            holder.bind()
-        }
-    }
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind() {
-            Picasso.with(itemView.context).load(mDataList!![adapterPosition].ImageUrl).into(itemView.ivFoodProfile)
-
-            itemView.setOnClickListener {
-                mItemClickCallback?.let {
-                    mItemClickCallback.ItemClickCallback(adapterPosition)
-                }
-            }
-        }
-    }
-
-    interface HomeItemClick {
-        fun ItemClickCallback(position: Int)
-    }
-
-    fun setLoadingStatus(status: Boolean) {
-        mInfiniteScrollRecyclerView!!.setLoadingStatus(status)
+    override fun onSelectCountry(country: Country?) {
+        flag_icon_imageview?.setBackgroundResource(country!!.flag)
+        country_code_textview.text = "" + country?.dialCode
     }
 }
 
 ```
 
-```
-fun onSetUpRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        rvListData.layoutManager = layoutManager
-        homeAdapter = HomeRecyclerViewAdapter(mContext = this,
-                mRecyclerView = rvListData,
-                mLayoutManager = layoutManager,
-                mRecyclerViewAdapterCallback = this,
-                mDataList = foodData!!,
-                mItemClickCallback = this)
-        rvListData.adapter = homeAdapter
-        homeAdapter?.setLoadingStatus(true)
-    }
-    
-```
-
 ## Min SDK Version
 
 ```
-Support Min Sdk version >= 16
+Support Min Sdk version >= 19
 
 ```
 
 ## Authors
 
-* **Bondol Tuon** - [Bondol Tuon](https://github.com/BondolTuon)
+* **Teang sunry** - [SunryTeang](https://github.com/SunryTeang)
 
-See also the list of [contributors](https://github.com/BondolTuon/Android-RecyclerView-Infinitescroll/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/SunryTeang/country/graphs/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/BondolTuon/Android-RecyclerView-Infinitescroll/blob/master/README.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/SunryTeang/country/blob/master/README.md) file for details
