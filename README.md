@@ -14,18 +14,18 @@ Step 1
 
 ```
 allprojects {
-	repositories {
-			maven { url 'https://jitpack.io' }
-		}
-	}
+    repositories {
+	maven { url 'https://jitpack.io' }
+     }
+}
 ```
 
 Step 2
 
 ```
 dependencies {
-	         implementation 'com.github.SunryTeang:country:1.0'
-	}
+   implementation 'com.github.SunryTeang:country:1.0'
+}
 ```
 
 ## Sample Using
