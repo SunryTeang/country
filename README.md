@@ -2,7 +2,7 @@
 This sample app with showing the way how to implement country list dailog
 
 #  Simple Demo
-<p align="center">
+<p align="left">
   <img src="Screenshot_1528352847.png" width="300"/>
   <img src="Screenshot_1528352851.png" width="300"/>
   <img src="Screenshot_1528352857.png" width="300"/>
