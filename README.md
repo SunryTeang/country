@@ -1,7 +1,7 @@
 # Country with flag
 This sample app with showing the way how to implement country list dailog
 
-#  Android-Country with flag
+#  Simple Demo
 
 ## Getting Started
 This sample app with showing the way how to implement with country list dailog
@@ -24,7 +24,7 @@ Step 2
 
 ```
 dependencies {
-	         implementation 'com.teangsunry.countrylibrary:1.0'
+	         implementation 'com.github.SunryTeang:country:1.0'
 	}
 ```
 
