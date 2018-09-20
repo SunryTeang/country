@@ -350,12 +350,23 @@ public class CountryPicker
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String countryCodeValue = tm.getNetworkCountryIso();
         for (Country country : getAllCountries()) {
-            if (country.getCode().toLowerCase(Locale.ENGLISH).contains(countryCodeValue.toLowerCase())) {
+            if (country.getCode().toLowerCase(Locale.ENGLISH).contains("kh")) {
                 return country;
             }
         }
         return null;
     }
+
+//    public Country getDefualtCountry(Context context) {
+//        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+//        String countryCodeValue = tm.getNetworkCountryIso();
+//        for (Country country : getAllCountries()) {
+//            if (country.getCode().toLowerCase(Locale.ENGLISH).contains(countryCodeValue.toLowerCase())) {
+//                return country;
+//            }
+//        }
+//        return null;
+//    }
     // endregion
 
     // region Utility Methods
